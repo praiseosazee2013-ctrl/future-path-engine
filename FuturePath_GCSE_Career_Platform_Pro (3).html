@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FuturePath | GCSE Careers</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#68738a;--primary:#5b5ce2;
+  --primary2:#7b61ff;--accent:#18b99a;--warning:#ffb84d;--danger:#ef6672;
+  --border:#e6e9f2;--shadow:0 14px 40px rgba(33,42,76,.09);--radius:22px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1250px;margin:auto;height:72px;display:flex;align-items:center;gap:28px;padding:0 20px}
+.logo{font-weight:900;font-size:22px;color:var(--primary);display:flex;align-items:center;gap:9px}.logo-dot{width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent))}
+.nav-links{display:flex;gap:6px;flex:1}.nav-links button{background:none;color:var(--muted);padding:10px 13px;border-radius:11px;font-weight:700}.nav-links button:hover,.nav-links button.active{background:#eef0ff;color:var(--primary)}
+.profile{display:flex;align-items:center;gap:10px;font-weight:800}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
+main{max-width:1250px;margin:auto;padding:30px 20px 70px}.hero{border-radius:30px;padding:42px;min-height:355px;background:linear-gradient(125deg,#171c46,#4037a7 55%,#6b5cf0);color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}.hero:before{width:380px;height:380px;right:-100px;top:-170px}.hero:after{width:260px;height:260px;right:180px;bottom:-210px}
+.hero-content{position:relative;z-index:2;max-width:700px}.eyebrow{text-transform:uppercase;letter-spacing:1.5px;font-size:12px;font-weight:900;opacity:.78}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.02;margin:12px 0}.hero p{font-size:18px;line-height:1.6;color:#e4e5ff;max-width:650px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{padding:13px 18px;border-radius:13px;font-weight:900;transition:.2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:#fff;color:#34339a}.btn-dark{background:#292a68;color:#fff}.btn-soft{background:#eef0ff;color:var(--primary)}.btn-green{background:var(--accent);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:22px 0}.stat,.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.stat{padding:20px}.stat strong{font-size:28px}.stat span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.section{margin-top:34px}.section-head{display:flex;justify-content:space-between;gap:15px;align-items:end;margin-bottom:17px}.section-head h2{margin:0;font-size:27px}.section-head p{margin:5px 0 0;color:var(--muted)}.section-head .search{max-width:320px}
+.search{width:100%;border:1px solid var(--border);background:#fff;padding:13px 15px;border-radius:13px;outline:none}.search:focus{border-color:var(--primary);box-shadow:0 0 0 4px #5b5ce214}
+.subject-grid,.career-grid,.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.subject,.career{padding:22px;transition:.22s;cursor:pointer}.subject:hover,.career:hover{transform:translateY(-5px);box-shadow:0 18px 45px rgba(33,42,76,.13)}
+.icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#eef0ff;font-size:23px;margin-bottom:15px}.subject h3,.career h3{margin:0 0 7px}.subject p,.career p{color:var(--muted);line-height:1.5;margin:0}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.chip{background:#f0f2f8;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:800;color:#536078}
+.career-top{display:flex;gap:13px;align-items:center}.career-top .icon{margin:0}.career-meta{display:flex;justify-content:space-between;margin-top:16px;color:var(--muted);font-size:12px;font-weight:800}.save{background:#f3f4f8;border-radius:10px;padding:8px 10px;color:#68738a}.save.saved{color:#d89a00;background:#fff6dc}
+.dashboard{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}.progress-card{padding:25px}.progress-bar{height:11px;background:#eceef5;border-radius:999px;overflow:hidden;margin:14px 0}.progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:999px;transition:.5s}
+.todo{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--border)}.todo:last-child{border:0}.todo-dot{width:10px;height:10px;border-radius:50%;background:var(--primary)}
+.match{padding:28px}.match-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}.question{padding:24px;border:1px solid var(--border);border-radius:18px;background:#fafbfe}.question h3{margin-top:0}.option{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--border);padding:13px;border-radius:12px;margin:9px 0;font-weight:700}.option:hover,.option.selected{border-color:var(--primary);background:#eef0ff;color:var(--primary)}
+.result{background:linear-gradient(135deg,#f0efff,#e9fff8);padding:25px;border-radius:18px;border:1px solid #deddfb}.result h3{margin-top:0}
+.pathway{padding:24px}.path-line{display:grid;grid-template-columns:50px 1fr;gap:15px;position:relative;padding-bottom:20px}.path-line:not(:last-child):after{content:"";position:absolute;left:24px;top:48px;height:calc(100% - 28px);width:2px;background:#dfe2ed}.step{width:48px;height:48px;border-radius:50%;background:#eef0ff;color:var(--primary);display:grid;place-items:center;font-weight:900;z-index:1}.path-line h4{margin:3px 0 4px}.path-line p{margin:0;color:var(--muted);line-height:1.5}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.badge{padding:17px;text-align:center}.badge .big{font-size:29px}.badge.locked{opacity:.42;filter:grayscale(1)}
+.modal{position:fixed;inset:0;background:rgba(14,18,40,.65);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modal-box{background:#fff;border-radius:24px;max-width:780px;width:100%;max-height:90vh;overflow:auto;padding:28px;box-shadow:0 30px 80px #0004}.modal-head{display:flex;justify-content:space-between;gap:20px}.close{background:#f0f2f7;width:38px;height:38px;border-radius:50%;font-size:20px}.quiz-q{padding:18px 0;border-bottom:1px solid var(--border)}.quiz-q p{font-weight:800}.quiz-q label{display:block;padding:8px;color:var(--muted)}
+.toast{position:fixed;bottom:22px;right:22px;background:#20243b;color:#fff;padding:14px 17px;border-radius:13px;box-shadow:var(--shadow);z-index:200;transform:translateY(120px);transition:.3s}.toast.show{transform:translateY(0)}
+footer{text-align:center;color:var(--muted);padding:20px}
+@media(max-width:850px){.nav-links{display:none}.stats{grid-template-columns:repeat(2,1fr)}.subject-grid,.career-grid,.path-grid{grid-template-columns:1fr 1fr}.dashboard,.match-layout{grid-template-columns:1fr}.badges{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){main{padding:18px 13px 50px}.hero{padding:27px;min-height:auto}.stats{grid-template-columns:1fr 1fr}.subject-grid,.career-grid,.path-grid{grid-template-columns:1fr}.section-head{align-items:stretch;flex-direction:column}.section-head .search{max-width:none}.hero h1{font-size:39px}.nav-inner{padding:0 13px}.profile span{display:none}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-dot"></span>FuturePath</div>
+    <div class="nav-links">
+      <button data-page="home" class="active">Dashboard</button>
+      <button data-page="subjects">Subjects</button>
+      <button data-page="careers">Careers</button>
+      <button data-page="matcher">Career Matcher</button>
+      <button data-page="options">Next Steps</button><button data-page="progress">My Progress</button>
+    </div>
+    <div class="profile"><div class="avatar">FP</div><span>Student</span></div>
+  </div>
+</nav>
+
+<main>
+<section id="home" class="page">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">GCSE • Careers • Your Future</div>
+      <h1>Turn your GCSE choices into a future you can see.</h1>
+      <p>Explore careers, discover which subjects connect to them, build pathways and test what you already know — all in one place.</p>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="go('matcher')">Find my career →</button>
+        <button class="btn btn-dark" onclick="go('subjects')">Explore subjects</button>
+      </div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong id="careerCount">24</strong><span>Career profiles</span></div>
+    <div class="stat"><strong>12</strong><span>GCSE subjects</span></div>
+    <div class="stat"><strong id="quizCount">0</strong><span>Quizzes completed</span></div>
+    <div class="stat"><strong id="savedCount">0</strong><span>Saved careers</span></div>
+  </div>
+
+  <div class="card progress-card" style="margin-top:18px">
+    <div class="section-head"><div><h2>FuturePath XP</h2><p>Explore, save and learn to level up.</p></div><strong id="levelLabel">Level 1</strong></div>
+    <div class="progress-bar"><div class="progress-fill" id="xpFill" style="width:0%"></div></div>
+    <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:13px"><span id="xpText">0 XP</span><span id="nextXp">100 XP to next level</span></div>
+  </div>
+
+  <div class="dashboard">
+    <div class="card progress-card">
+      <div class="section-head"><div><h2>Your journey</h2><p>Small steps now can make future choices easier.</p></div><strong id="progressText">0%</strong></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="todo"><div class="todo-dot"></div><div><b>Complete the career matcher</b><br><small>Get your first personalised suggestions.</small></div></div>
+      <div class="todo"><div class="todo-dot"></div><div><b>Explore 3 careers</b><br><small>Compare different routes into work.</small></div></div>
+      <div class="todo"><div class="todo-dot"></div><div><b>Try a career quiz</b><br><small>Earn your first achievement.</small></div></div>
+    </div>
+    <div class="card progress-card">
+      <div class="eyebrow" style="color:var(--primary)">Daily challenge</div>
+      <h2 id="dailyTitle">Think like a designer</h2>
+      <p id="dailyText" style="color:var(--muted);line-height:1.6">Which skill matters most when turning an idea into a useful product?</p>
+      <button class="btn btn-soft" onclick="dailyChallenge()">Answer challenge</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div><h2>Recommended for you</h2><p>Popular starting points for GCSE students.</p></div></div>
+    <div id="homeCareers" class="career-grid"></div>
+  </div>
+</section>
+
+<section id="subjects" class="page hidden">
+  <div class="section-head"><div><h2>Explore GCSE subjects</h2><p>Pick a subject to see careers where it can be useful.</p></div><input class="search" id="subjectSearch" placeholder="Search subjects..."></div>
+  <div id="subjectGrid" class="subject-grid"></div>
+</section>
+
+<section id="careers" class="page hidden">
+  <div class="section-head"><div><h2>Career explorer</h2><p>Compare careers by area, skills and route.</p></div><input class="search" id="careerSearch" placeholder="Search careers..."></div>
+  <div class="chips" id="careerFilters" style="margin-bottom:18px"></div>
+  <div id="careerGrid" class="career-grid"></div>
+</section>
+
+<section id="matcher" class="page hidden">
+  <div class="card match">
+    <div class="section-head"><div><h2>Career Matcher</h2><p>Answer 5 questions. There are no right or wrong answers.</p></div></div>
+    <div class="match-layout">
+      <div id="matchQuestions"></div>
+      <div>
+        <div id="matchResult" class="result">
+          <h3>Your result will appear here</h3>
+          <p style="color:var(--muted)">Choose an answer for each question, then press “Match me”.</p>
+        </div>
+        <button class="btn btn-primary" style="margin-top:14px;width:100%" onclick="runMatcher()">Match me with careers</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="options" class="page hidden">
+  <div class="hero" style="min-height:270px;margin-bottom:22px">
+    <div class="hero-content">
+      <div class="eyebrow">After GCSEs • England & UK</div>
+      <h1>Choose a route, not a label.</h1>
+      <p>Compare sixth form, college, apprenticeships and university-style routes, then build a simple action plan for your next steps.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div><h2>Which route sounds right?</h2><p>There is no single “best” route — it depends on the career and what suits you.</p></div></div>
+    <div class="path-grid">
+      <div class="card pathway"><div class="icon">🎓</div><h3>Sixth form / college</h3><p style="color:var(--muted);line-height:1.6">Continue studying after GCSEs, often taking A levels or other post-16 qualifications. This can be useful if you want to keep academic options open.</p><div class="chips"><span class="chip">Academic study</span><span class="chip">Post-16</span></div></div>
+      <div class="card pathway"><div class="icon">🛠️</div><h3>Apprenticeship</h3><p style="color:var(--muted);line-height:1.6">Combine paid work with training and a qualification. In England, official guidance says apprenticeships are available from age 16, with different levels available.</p><div class="chips"><span class="chip">Work + study</span><span class="chip">Paid job</span></div><button class="btn btn-soft" onclick="openApprenticeship()">Learn more</button></div>
+      <div class="card pathway"><div class="icon">🏫</div><h3>University</h3><p style="color:var(--muted);line-height:1.6">A higher-education route that can lead to a degree and is required or useful for many careers. Entry requirements differ by course.</p><div class="chips"><span class="chip">Degree</span><span class="chip">Subject specialism</span></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div><h2>Interactive next-step planner</h2><p>Pick a career and the planner will turn it into a checklist.</p></div>
+      <select id="plannerCareer" class="search" style="max-width:330px"><option value="">Choose a career...</option></select>
+    </div>
+    <div class="card pathway" id="plannerOutput"><p style="color:var(--muted)">Choose a career above to generate your plan.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div><h2>Official UK resources</h2><p>Use these for current information rather than relying on static career websites.</p></div></div>
+    <div class="path-grid">
+      <div class="card pathway"><h3>Find an apprenticeship</h3><p style="color:var(--muted)">The official England service lets you search and apply for apprenticeships.</p><a class="btn btn-soft" href="https://www.gov.uk/apply-apprenticeship" target="_blank" rel="noopener">Open GOV.UK →</a></div>
+      <div class="card pathway"><h3>UCAS apprenticeships</h3><p style="color:var(--muted)">Explore apprenticeship information, industries and vacancies through UCAS.</p><a class="btn btn-soft" href="https://www.ucas.com/apprenticeships" target="_blank" rel="noopener">Open UCAS →</a></div>
+      <div class="card pathway"><h3>Compare before deciding</h3><p style="color:var(--muted)">Check the qualification, subjects/grades, training provider, employer, location and progression before applying.</p><button class="btn btn-soft" onclick="showCompare()">Open checklist</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="progress" class="page hidden">
+  <div class="section-head"><div><h2>My Progress</h2><p>Your activity is saved in this browser.</p></div><button class="btn btn-soft" onclick="resetProgress()">Reset progress</button></div>
+  <div class="stats">
+    <div class="stat"><strong id="pQuiz">0</strong><span>Quizzes completed</span></div>
+    <div class="stat"><strong id="pSaved">0</strong><span>Saved careers</span></div>
+    <div class="stat"><strong id="pExplored">0</strong><span>Careers explored</span></div>
+    <div class="stat"><strong id="pScore">—</strong><span>Best quiz score</span></div>
+  </div>
+  <div class="section">
+    <div class="section-head"><div><h2>Achievements</h2><p>Keep exploring to unlock them.</p></div></div>
+    <div class="badges" id="badges"></div>
+  </div>
+  <div class="section">
+    <div class="card pathway">
+      <h2>Your saved careers</h2>
+      <div id="savedList"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>FuturePath • A GCSE careers exploration prototype • Built as a single offline HTML file</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const subjects=[
+["English Language","📖","Communication, writing and analysis","Journalist, Lawyer, Teacher, Marketing Executive"],
+["Maths","➗","Problem solving, logic and quantitative skills","Data Analyst, Engineer, Accountant, Economist"],
+["Biology","🧬","Living systems, health and scientific investigation","Doctor, Biomedical Scientist, Zoologist, Physiotherapist"],
+["Chemistry","⚗️","Matter, experiments and scientific reasoning","Pharmacist, Chemist, Chemical Engineer, Forensic Scientist"],
+["Physics","⚡","Forces, energy, maths and how the universe works","Engineer, Physicist, Architect, Aerospace Engineer"],
+["Computer Science","💻","Programming, systems and computational thinking","Software Developer, Cyber Security Analyst, Data Scientist, Game Developer"],
+["Geography","🌍","Places, people, environment and data","Geographer, Town Planner, Environmental Consultant, Surveyor"],
+["History","🏛️","Evidence, interpretation and understanding change","Lawyer, Historian, Civil Servant, Journalist"],
+["Art & Design","🎨","Creative thinking, visual communication and making","Graphic Designer, Architect, Animator, UX Designer"],
+["Business","📈","Enterprise, finance, strategy and organisations","Entrepreneur, Accountant, Marketing Manager, Consultant"],
+["Languages","🗣️","Communication across cultures and countries","Translator, Diplomat, Teacher, International Business"],
+["PE","🏃","Movement, teamwork, performance and wellbeing","Sports Coach, Physiotherapist, Sports Scientist, PE Teacher"]
+];
+
+const careers=[
+{name:"Software Developer",icon:"💻",area:"Technology",subjects:["Maths","Computer Science","Physics"],skills:["Problem solving","Coding","Creativity"],route:"Degree / Apprenticeship",salary:"Varies by experience",desc:"Builds websites, apps, tools and software systems that solve real problems.",path:["GCSE Maths + Computer Science","A levels / T Level / college or apprenticeship","Junior Developer / Degree pathway","Software Developer → Senior Developer → Tech Lead"]},
+{name:"Doctor",icon:"🩺",area:"Health",subjects:["Biology","Chemistry","Maths"],skills:["Empathy","Science","Decision making"],route:"University",salary:"Varies by role and experience",desc:"Diagnoses and treats patients while working as part of a healthcare team.",path:["GCSE Biology + Chemistry + strong academic profile","A levels / equivalent qualifications","Medical degree + clinical training","Doctor → Specialisation / GP / Consultant"]},
+{name:"Engineer",icon:"⚙️",area:"Engineering",subjects:["Maths","Physics","Computer Science"],skills:["Mathematics","Design","Problem solving"],route:"Degree / Apprenticeship",salary:"Varies by engineering field",desc:"Uses science and maths to design, test and improve systems, structures and technology.",path:["GCSE Maths + Physics","A levels / T Level / apprenticeship","Engineering degree or higher apprenticeship","Graduate Engineer → Chartered / Senior Engineer"]},
+{name:"Graphic Designer",icon:"🎨",area:"Creative",subjects:["Art & Design","English Language","Computer Science"],skills:["Visual thinking","Creativity","Communication"],route:"College / Degree / Portfolio",salary:"Varies by experience",desc:"Creates visual content for brands, products, campaigns and digital experiences.",path:["GCSE Art & Design","College / sixth form / creative qualification","Portfolio + internships / junior role","Designer → Senior Designer → Creative Director"]},
+{name:"Data Analyst",icon:"📊",area:"Technology",subjects:["Maths","Computer Science","Business"],skills:["Data","Logic","Communication"],route:"Degree / Apprenticeship",salary:"Varies by sector and experience",desc:"Turns data into useful insights that help organisations make decisions.",path:["GCSE Maths + Computer Science","College / A levels / apprenticeship","Degree or data apprenticeship","Analyst → Senior Analyst → Data Scientist / Manager"]},
+{name:"Lawyer",icon:"⚖️",area:"Law",subjects:["English Language","History","Maths"],skills:["Research","Writing","Reasoning"],route:"Degree / Solicitor or Bar route",salary:"Varies by legal role",desc:"Advises clients, researches law and helps solve legal problems.",path:["GCSE English + strong written subjects","A levels / equivalent","Law degree or conversion + professional training","Trainee → Qualified Lawyer → Senior / Partner"]},
+{name:"Architect",icon:"🏗️",area:"Design",subjects:["Maths","Physics","Art & Design"],skills:["Design","Technical drawing","Problem solving"],route:"University",salary:"Varies by experience",desc:"Designs buildings and spaces while balancing creativity, safety and practical constraints.",path:["GCSE Maths + Art can be useful","Sixth form / college","Architecture degree + professional experience","Part 1 → Part 2 → Part 3 / Architect"]},
+{name:"Cyber Security Analyst",icon:"🔐",area:"Technology",subjects:["Computer Science","Maths","Physics"],skills:["Investigation","Logic","Attention to detail"],route:"Degree / Apprenticeship",salary:"Varies by sector and experience",desc:"Helps protect systems, networks and information from cyber threats.",path:["GCSE Computer Science + Maths","College / T Level / apprenticeship","Cyber degree or technical training","Analyst → Security Engineer → Security Specialist"]},
+{name:"Psychologist",icon:"🧠",area:"Health",subjects:["Biology","English Language","Maths"],skills:["Listening","Research","Analysis"],route:"University",salary:"Varies by specialism",desc:"Studies behaviour and mental processes and can work in research, education, health and other settings.",path:["GCSE English + Science subjects","A levels / equivalent","Psychology degree + further training","Assistant / Graduate → Specialist Psychologist"]},
+{name:"Journalist",icon:"📰",area:"Media",subjects:["English Language","History","Languages"],skills:["Writing","Curiosity","Interviewing"],route:"Degree / College / Portfolio",salary:"Varies by employer and experience",desc:"Researches stories, checks information and communicates news to audiences.",path:["GCSE English + Humanities","College / degree / journalism course","Portfolio + work experience","Reporter → Journalist → Senior / Editor"]},
+{name:"Accountant",icon:"💷",area:"Business",subjects:["Maths","Business","Computer Science"],skills:["Numeracy","Organisation","Analysis"],route:"Degree / Apprenticeship",salary:"Varies by qualification and experience",desc:"Works with financial information, budgets, reporting and business decisions.",path:["GCSE Maths","A levels / T Level / apprenticeship","Degree or professional apprenticeship","Trainee → Qualified Accountant → Manager / Specialist"]},
+{name:"Environmental Consultant",icon:"🌱",area:"Environment",subjects:["Geography","Biology","Chemistry"],skills:["Research","Science","Sustainability"],route:"Degree / Apprenticeship",salary:"Varies by sector and experience",desc:"Helps organisations understand environmental impacts and make more sustainable decisions.",path:["GCSE Geography + Science","Sixth form / college","Environmental science or related degree","Graduate Consultant → Consultant → Senior / Principal"]},
+{name:"Teacher",icon:"👩‍🏫",area:"Education",subjects:["English Language","Maths","History"],skills:["Communication","Patience","Leadership"],route:"University / Teacher Training",salary:"Varies by experience and role",desc:"Plans learning, supports pupils and helps young people develop knowledge and confidence.",path:["Strong GCSEs including English and Maths","Sixth form / college","Degree + teacher training or integrated route","Early Career Teacher → Experienced Teacher → Leadership"]},
+{name:"Game Developer",icon:"🎮",area:"Technology",subjects:["Computer Science","Maths","Art & Design"],skills:["Coding","Creativity","Teamwork"],route:"Degree / Apprenticeship / Portfolio",salary:"Varies by studio and experience",desc:"Creates the code and systems that make games work and feel interactive.",path:["GCSE Computer Science + Maths","College / T Level / degree","Projects + portfolio / junior role","Developer → Senior → Technical / Design Lead"]},
+{name:"Marketing Executive",icon:"📣",area:"Business",subjects:["English Language","Business","Art & Design"],skills:["Creativity","Communication","Research"],route:"Degree / Apprenticeship",salary:"Varies by sector and experience",desc:"Plans campaigns and uses research, content and data to reach audiences.",path:["GCSE English + Business or creative subject","College / sixth form","Degree or marketing apprenticeship","Executive → Manager → Head of Marketing"]},
+{name:"Forensic Scientist",icon:"🔬",area:"Science",subjects:["Chemistry","Biology","Maths"],skills:["Observation","Science","Accuracy"],route:"University / Apprenticeship",salary:"Varies by employer and specialism",desc:"Uses scientific methods to examine evidence and support investigations.",path:["GCSE Chemistry + Biology + Maths","A levels / equivalent","Forensic science or related degree","Laboratory / Graduate → Scientist → Specialist"]},
+{name:"Physiotherapist",icon:"🦴",area:"Health",subjects:["Biology","PE","Chemistry"],skills:["Empathy","Science","Communication"],route:"University",salary:"Varies by experience and setting",desc:"Helps people improve movement and function through assessment, treatment and rehabilitation.",path:["GCSE Biology + PE can be useful","A levels / equivalent","Physiotherapy degree","Newly Qualified → Specialist / Senior Physiotherapist"]},
+{name:"Civil Servant",icon:"🏛️",area:"Public Service",subjects:["English Language","History","Geography"],skills:["Research","Communication","Organisation"],route:"Degree / Apprenticeship",salary:"Varies by grade and department",desc:"Works on public services and policy across government departments.",path:["GCSE English + humanities","Sixth form / college","Degree or civil service apprenticeship","Executive Officer → Higher grades → Senior roles"]},
+{name:"UX Designer",icon:"🖥️",area:"Creative",subjects:["Art & Design","Computer Science","English Language"],skills:["Empathy","Design","Research"],route:"Degree / Portfolio / Apprenticeship",salary:"Varies by experience",desc:"Designs digital experiences so websites and apps are clear, useful and enjoyable.",path:["GCSE Art + English / Computer Science","College / degree / portfolio","Projects + work experience","Junior UX → UX Designer → Lead Designer"]},
+{name:"Aerospace Engineer",icon:"✈️",area:"Engineering",subjects:["Maths","Physics","Computer Science"],skills:["Mathematics","Physics","Precision"],route:"University / Degree Apprenticeship",salary:"Varies by industry and experience",desc:"Designs and tests aircraft, spacecraft and related systems.",path:["GCSE Maths + Physics","A levels / equivalent","Aerospace or mechanical engineering degree","Graduate → Engineer → Specialist / Lead"]},
+{name:"Town Planner",icon:"🏙️",area:"Environment",subjects:["Geography","Maths","English Language"],skills:["Planning","Communication","Analysis"],route:"Degree / Apprenticeship",salary:"Varies by experience and employer",desc:"Helps plan how towns, cities and communities develop and use space.",path:["GCSE Geography + Maths","Sixth form / college","Planning or related degree","Graduate Planner → Planner → Senior / Principal"]},
+{name:"Sports Scientist",icon:"🏅",area:"Sport",subjects:["PE","Biology","Maths"],skills:["Science","Data","Performance"],route:"University",salary:"Varies by setting and specialism",desc:"Applies science and data to understand and improve human performance.",path:["GCSE PE + Biology + Maths","A levels / equivalent","Sport and exercise science degree","Graduate → Practitioner / Scientist → Specialist"]},
+{name:"Entrepreneur",icon:"🚀",area:"Business",subjects:["Business","Maths","English Language"],skills:["Leadership","Creativity","Resilience"],route:"Flexible / Business building",salary:"Highly variable",desc:"Builds and runs a business by identifying problems, creating solutions and taking calculated risks.",path:["Explore Business + Maths","Develop an idea and test it","Build skills through projects / enterprise","Founder → Growing business → New ventures"]},
+{name:"Translator",icon:"🌐",area:"Languages",subjects:["Languages","English Language","History"],skills:["Languages","Accuracy","Cultural awareness"],route:"Degree / Apprenticeship",salary:"Varies by language and setting",desc:"Converts written or spoken meaning between languages while preserving context.",path:["GCSE language + English","Sixth form / college","Language degree / specialist training","Translator → Specialist → Senior / Project roles"]}
+];
+
+const matcherQuestions=[
+["What type of task sounds most satisfying?",["Building or solving something","Helping or understanding people","Creating something original","Investigating facts and patterns","Leading an idea or project"]],
+["Which school activity would you pick?",["A coding or maths challenge","A science or wellbeing project","Art, media or design","A research or debate task","A business or enterprise challenge"]],
+["What skill would you most like to use?",["Logic","Empathy","Creativity","Analysis","Leadership"]],
+["Where could you imagine working?",["Tech or engineering environment","Hospital, school or community","Studio or creative team","Lab, office or research setting","Business or organisation"]],
+["What motivates you most?",["Making systems work","Making a difference to people","Expressing ideas","Discovering how things work","Turning an idea into reality"]]
+];
+const areaMap={Technology:"💻",Health:"🩺",Engineering:"⚙️",Creative:"🎨",Law:"⚖️",Design:"🏗️",Media:"📰",Business:"📈",Environment:"🌱","Education":"👩‍🏫",Science:"🔬","Public Service":"🏛️",Sport:"🏅",Languages:"🌐"};
+
+let state=JSON.parse(localStorage.getItem("futurepath_state")||'{"saved":[],"explored":[],"quizzes":0,"best":0,"matcher":false,"xp":0,"planDone":[]}');
+state.xp=state.xp||0; state.planDone=state.planDone||[];
+let activeFilter="All";
+
+function addXP(amount,msg){
+ state.xp=(state.xp||0)+amount; saveState(); if(msg) toast("+"+amount+" XP — "+msg);
+}
+function saveState(){localStorage.setItem("futurepath_state",JSON.stringify(state));updateStats()}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)}
+function go(page){
+ document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));
+ document.getElementById(page).classList.remove("hidden");
+ document.querySelectorAll(".nav-links button").forEach(x=>x.classList.toggle("active",x.dataset.page===page));
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(page==="progress")renderProgress();
+}
+document.querySelectorAll(".nav-links button").forEach(b=>b.onclick=()=>go(b.dataset.page));
+
+function careerCard(c){
+ const saved=state.saved.includes(c.name);
+ return `<div class="card career" onclick="openCareer('${c.name}')">
+  <div class="career-top"><div class="icon">${c.icon}</div><div style="flex:1"><h3>${c.name}</h3><span style="color:var(--muted);font-size:12px;font-weight:800">${c.area}</span></div>
+  <button class="save ${saved?'saved':''}" onclick="event.stopPropagation();toggleSave('${c.name}')">${saved?'★':'☆'}</button></div>
+  <p style="margin-top:15px">${c.desc}</p>
+  <div class="chips">${c.skills.slice(0,3).map(s=>`<span class="chip">${s}</span>`).join("")}</div>
+  <div class="career-meta"><span>${c.route}</span><span>View pathway →</span></div>
+ </div>`;
+}
+function renderCareers(){
+ const q=(document.getElementById("careerSearch")?.value||"").toLowerCase();
+ const list=careers.filter(c=>(activeFilter==="All"||c.area===activeFilter)&&`${c.name} ${c.area} ${c.subjects.join(" ")} ${c.skills.join(" ")}`.toLowerCase().includes(q));
+ document.getElementById("careerGrid").innerHTML=list.map(careerCard).join("")||`<div class="card" style="padding:25px">No careers found. Try another search.</div>`;
+}
+function renderHome(){document.getElementById("homeCareers").innerHTML=careers.slice(0,6).map(careerCard).join("")}
+function renderSubjects(){
+ const q=(document.getElementById("subjectSearch")?.value||"").toLowerCase();
+ document.getElementById("subjectGrid").innerHTML=subjects.filter(s=>s[0].toLowerCase().includes(q)||s[2].toLowerCase().includes(q)).map(s=>`
+ <div class="card subject" onclick="subjectCareers('${s[0]}')"><div class="icon">${s[1]}</div><h3>${s[0]}</h3><p>${s[2]}</p><div class="chips"><span class="chip">${s[3].split(",")[0]}</span><span class="chip">Explore careers →</span></div></div>`).join("");
+}
+function renderFilters(){
+ const areas=["All",...new Set(careers.map(c=>c.area))];
+ document.getElementById("careerFilters").innerHTML=areas.map(a=>`<button class="chip" style="border:0;cursor:pointer;background:${activeFilter===a?'#5b5ce2':'#eef0f5'};color:${activeFilter===a?'#fff':'#536078'}" onclick="activeFilter='${a}';renderFilters();renderCareers()">${a}</button>`).join("");
+}
+function subjectCareers(subject){
+ const list=careers.filter(c=>c.subjects.includes(subject));
+ document.getElementById("modalBox").innerHTML=`<div class="modal-head"><div><div class="eyebrow" style="color:var(--primary)">Subject explorer</div><h2>${subject}</h2><p style="color:var(--muted)">Careers where ${subject} can help you build useful knowledge or skills.</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="career-grid" style="margin-top:20px">${list.map(careerCard).join("")}</div>`;
+ document.getElementById("modal").classList.add("open");
+}
+function openCareer(name){
+ const c=careers.find(x=>x.name===name); if(!c)return;
+ if(!state.explored.includes(name)){state.explored.push(name);saveState();addXP(15,"Career explored")}
+ document.getElementById("modalBox").innerHTML=`<div class="modal-head"><div><div class="icon">${c.icon}</div><div class="eyebrow" style="color:var(--primary)">${c.area}</div><h2>${c.name}</h2><p style="color:var(--muted);line-height:1.6">${c.desc}</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="chips">${c.skills.map(s=>`<span class="chip">${s}</span>`).join("")}</div>
+ <div class="section"><h3>Useful GCSE subjects</h3><div class="chips">${c.subjects.map(s=>`<span class="chip">${s}</span>`).join("")}</div></div>
+ <div class="section"><h3>Typical pathway</h3><div class="pathway">${c.path.map((p,i)=>`<div class="path-line"><div class="step">${i+1}</div><div><h4>${p.split(" + ")[0]}</h4><p>${p}</p></div></div>`).join("")}</div></div>
+ <div class="section"><button class="btn btn-soft" onclick="startQuiz('${c.name}')">Take ${c.name} quiz →</button> <button class="btn btn-dark" onclick="toggleSave('${c.name}');openCareer('${c.name}')">${state.saved.includes(c.name)?'Remove from saved':'Save career'}</button></div>`;
+ document.getElementById("modal").classList.add("open");
+}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+
+const quizBank={
+"Software Developer":[["Which skill is especially useful for developers?","Problem solving",["Problem solving","Public speaking","Cooking","Singing"]],["What does code do?","Gives instructions to a computer",["Gives instructions to a computer","Only stores photos","Prints books","Measures weather"]],["What should a developer do when code fails?","Debug and test it",["Debug and test it","Ignore it","Delete everything","Stop learning"]]],
+"Doctor":[["Which quality is important when caring for patients?","Empathy",["Empathy","Ignoring questions","Avoiding teamwork","Guessing"]],["Why is science important in medicine?","It helps understand the body and treatments",["It helps understand the body and treatments","It replaces communication","It prevents all illness","It removes the need for evidence"]],["What is diagnosis?","Working out what may be causing symptoms",["Working out what may be causing symptoms","Writing computer code","Designing a building","Selling products"]]],
+"Engineer":[["What do engineers often use?","Maths and science",["Maths and science","Only history","Only creative writing","No evidence"]],["Why do engineers test designs?","To check performance and improve safety",["To check performance and improve safety","To make projects slower","To avoid measurements","To remove teamwork"]],["Which approach fits engineering?","Solve, test and improve",["Solve, test and improve","Guess and never test","Copy without checking","Avoid problems"]]]
+};
+function startQuiz(name){
+ const c=careers.find(x=>x.name===name);const qs=quizBank[name]||[
+ ["Which GCSE subject is directly useful for this career?",c.subjects[0], [c.subjects[0], "No subjects are useful", "Only PE", "Only music"]],
+ ["Which skill appears in this career profile?",c.skills[0], [c.skills[0], "Avoiding teamwork", "Ignoring detail", "Never communicating"]],
+ ["What is a good career habit?", "Keep learning and improving", ["Keep learning and improving","Never ask questions","Avoid practice","Give up quickly"]]
+ ];
+ document.getElementById("modalBox").innerHTML=`<div class="modal-head"><div><div class="eyebrow" style="color:var(--primary)">Career challenge</div><h2>${name} quiz</h2><p style="color:var(--muted)">Test your understanding and earn progress.</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div id="quizForm">${qs.map((q,i)=>`<div class="quiz-q"><p>${i+1}. ${q[0]}</p>${q[2].map((o,j)=>`<label><input type="radio" name="q${i}" value="${o.replace(/"/g,'&quot;')}"> ${o}</label>`).join("")}</div>`).join("")}</div>
+ <button class="btn btn-primary" style="margin-top:18px" onclick='submitQuiz(${JSON.stringify(name)},${JSON.stringify(qs)})'>Submit quiz</button>`;
+ document.getElementById("modal").classList.add("open");
+}
+function submitQuiz(name,qs){
+ let score=0,answered=0;qs.forEach((q,i)=>{const a=document.querySelector(`input[name="q${i}"]:checked`);if(a){answered++;if(a.value===q[1])score++}});
+ if(answered<qs.length){toast("Answer every question first.");return}
+ state.quizzes++;state.best=Math.max(state.best,Math.round(score/qs.length*100));saveState();addXP(25,"Quiz completed");
+ const pct=Math.round(score/qs.length*100);
+ document.getElementById("modalBox").innerHTML=`<div style="text-align:center;padding:25px"><div style="font-size:55px">${pct>=67?'🏆':'💪'}</div><h2>${pct>=67?'Great job!':'Keep going!'}</h2><p style="font-size:18px">You scored <b>${score}/${qs.length}</b> (${pct}%).</p><p style="color:var(--muted)">Exploring careers and learning what they involve is progress in itself.</p><button class="btn btn-primary" onclick="closeModal()">Continue exploring</button></div>`;
+ toast(`Quiz complete: ${pct}%`);
+}
+function toggleSave(name){
+ if(state.saved.includes(name))state.saved=state.saved.filter(x=>x!==name);else state.saved.push(name);
+ saveState();renderCareers();renderHome();renderProgress();if(state.saved.includes(name)) addXP(10,"Career saved"); else toast("Career removed");
+}
+function buildMatcher(){
+ document.getElementById("matchQuestions").innerHTML=matcherQuestions.map((q,i)=>`<div class="question"><h3>${i+1}. ${q[0]}</h3>${q[1].map((o,j)=>`<button class="option" data-q="${i}" data-v="${j}" onclick="selectOption(this)">${o}</button>`).join("")}</div>`).join("");
+}
+function selectOption(btn){
+ document.querySelectorAll(`.option[data-q="${btn.dataset.q}"]`).forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");
+}
+function runMatcher(){
+ const selected=[0,1,2,3,4].map(i=>document.querySelector(`.option[data-q="${i}"].selected`));
+ if(selected.some(x=>!x)){toast("Choose an answer for every question.");return}
+ const counts=[0,0,0,0,0];selected.forEach(x=>counts[+x.dataset.v]++);
+ const top=counts.map((n,i)=>[n,i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(x=>x[1]);
+ const wanted=top.map(i=>["Technology","Health","Creative","Science","Business"][i]);
+ let results=careers.filter(c=>wanted.some(a=>c.area===a)||c.subjects.some(s=>["Maths","Biology","Art & Design","Chemistry","Business"].includes(s))).slice(0,4);
+ state.matcher=true;saveState();addXP(30,"Career matcher completed");
+ document.getElementById("matchResult").innerHTML=`<h3>Your strongest themes</h3><div class="chips">${wanted.map(x=>`<span class="chip">${areaMap[x]||'✨'} ${x}</span>`).join("")}</div><p style="color:var(--muted);line-height:1.6">Based on your answers, these careers are worth exploring first. Your result is a starting point, not a fixed decision.</p><div style="margin-top:15px">${results.map(c=>`<button class="btn btn-soft" style="margin:5px 4px 0 0" onclick="openCareer('${c.name}')">${c.icon} ${c.name}</button>`).join("")}</div>`;
+ toast("Your career matches are ready!");
+}
+function dailyChallenge(){toast("Answer: creativity, testing and understanding the user all matter.");}
+function updateStats(){
+ const xp=state.xp||0, level=Math.floor(xp/100)+1, within=xp%100;
+ const lf=document.getElementById("xpFill"), ll=document.getElementById("levelLabel"), xt=document.getElementById("xpText"), nx=document.getElementById("nextXp");
+ if(lf){lf.style.width=within+"%";ll.textContent="Level "+level;xt.textContent=xp+" XP";nx.textContent=(100-within)+" XP to next level";}
+ document.getElementById("careerCount").textContent=careers.length;
+ document.getElementById("quizCount").textContent=state.quizzes;
+ document.getElementById("savedCount").textContent=state.saved.length;
+ const done=Math.min(100,Math.round(((state.matcher?1:0)+(state.explored.length>=3?1:0)+(state.quizzes?1:0))/3*100));
+ document.getElementById("progressFill").style.width=done+"%";document.getElementById("progressText").textContent=done+"%";
+}
+function renderProgress(){
+ document.getElementById("pQuiz").textContent=state.quizzes;document.getElementById("pSaved").textContent=state.saved.length;document.getElementById("pExplored").textContent=state.explored.length;document.getElementById("pScore").textContent=state.best?state.best+"%":"—";
+ const badges=[
+ ["🧭","First Explorer",state.explored.length>=1],["⭐","Career Collector",state.saved.length>=3],["🧠","Quiz Starter",state.quizzes>=1],["🏆","Quiz Master",state.quizzes>=3],["🎯","Career Matcher",state.matcher],["🔎","Curious Mind",state.explored.length>=5],["🚀","Future Focused",state.saved.length>=5],["📚","Subject Explorer",state.explored.length>=3]
+ ];
+ document.getElementById("badges").innerHTML=badges.map(b=>`<div class="card badge ${b[2]?'':'locked'}"><div class="big">${b[0]}</div><b>${b[1]}</b><div style="font-size:11px;color:var(--muted);margin-top:5px">${b[2]?'Unlocked':'Keep exploring'}</div></div>`).join("");
+ document.getElementById("savedList").innerHTML=state.saved.length?state.saved.map(n=>{const c=careers.find(x=>x.name===n);return `<div class="todo"><div style="font-size:26px">${c.icon}</div><div style="flex:1"><b>${c.name}</b><br><small>${c.area} • ${c.route}</small></div><button class="btn btn-soft" onclick="openCareer('${c.name}')">View</button></div>`}).join(""):`<p style="color:var(--muted)">No saved careers yet. Explore a career and press ☆ to save it.</p>`;
+}
+
+function populatePlanner(){
+ const el=document.getElementById("plannerCareer");
+ if(!el)return;
+ el.innerHTML='<option value="">Choose a career...</option>'+careers.map(c=>`<option value="${c.name}">${c.icon} ${c.name}</option>`).join("");
+ el.onchange=renderPlanner;
+}
+function renderPlanner(){
+ const c=careers.find(x=>x.name===document.getElementById("plannerCareer").value);
+ const out=document.getElementById("plannerOutput"); if(!c){out.innerHTML='<p style="color:var(--muted)">Choose a career above to generate your plan.</p>';return;}
+ const steps=[
+ `Research the GCSE subjects that connect to ${c.name}: ${c.subjects.join(", ")}.`,
+ `Explore post-16 choices and check the entry requirements for the next stage.`,
+ `Compare ${c.route.toLowerCase()} options and look at real course or apprenticeship requirements.`,
+ `Build evidence of relevant skills through school projects, clubs, volunteering or appropriate work experience.`,
+ `Revisit your plan each term — your interests can change, and that is normal.`
+ ];
+ out.innerHTML=`<div class="eyebrow" style="color:var(--primary)">${c.area}</div><h2>${c.icon} ${c.name}</h2><p style="color:var(--muted)">Suggested route: <b>${c.route}</b></p>${steps.map((x,i)=>`<div class="todo"><div class="step">${i+1}</div><div style="flex:1"><b>${x}</b></div><input type="checkbox" ${state.planDone.includes(c.name+"-"+i)?"checked":""} onchange="togglePlan('${c.name}',${i},this.checked)"></div>`).join("")}`;
+}
+function togglePlan(name,i,checked){
+ const key=name+"-"+i;
+ if(checked&&!state.planDone.includes(key)){state.planDone.push(key);addXP(10,"Planner task completed")}
+ if(!checked)state.planDone=state.planDone.filter(x=>x!==key);
+ saveState();renderPlanner();
+}
+function openApprenticeship(){
+ document.getElementById("modalBox").innerHTML=`<div class="modal-head"><div><div class="eyebrow" style="color:var(--primary)">Apprenticeships</div><h2>Work + study</h2><p style="color:var(--muted);line-height:1.6">In England, apprenticeships combine employment with training and a qualification. GOV.UK says you can start one from age 16 if you meet the relevant conditions. Different levels are available.</p></div><button class="close" onclick="closeModal()">×</button></div>
+ <div class="path-grid"><div class="card pathway"><h3>What to check</h3><p style="color:var(--muted)">Role, employer, qualification, entry requirements, location and progression.</p></div><div class="card pathway"><h3>How to search</h3><p style="color:var(--muted)">Use the official Find an Apprenticeship service and check the employer's own information.</p></div></div>
+ <div class="section"><a class="btn btn-primary" href="https://www.gov.uk/apply-apprenticeship" target="_blank" rel="noopener">Find apprenticeships on GOV.UK →</a></div>`;
+ document.getElementById("modal").classList.add("open");
+}
+function showCompare(){
+ document.getElementById("modalBox").innerHTML=`<div class="modal-head"><div><div class="eyebrow" style="color:var(--primary)">Decision checklist</div><h2>Compare your options</h2></div><button class="close" onclick="closeModal()">×</button></div>
+ ${["What qualification will I gain?","What subjects/grades are required?","Will I learn mainly in a classroom, workplace, or both?","Where is it based and would travel matter?","What could I progress to afterwards?","Does the route fit the career I am considering?"].map((x,i)=>`<div class="todo"><div class="step">${i+1}</div><div><b>${x}</b><br><small style="color:var(--muted)">Write a short answer before making a decision.</small></div></div>`).join("")}`;
+ document.getElementById("modal").classList.add("open");
+}
+
+function resetProgress(){if(confirm("Reset all FuturePath progress on this browser?")){state={saved:[],explored:[],quizzes:0,best:0,matcher:false,xp:0,planDone:[]};saveState();renderProgress();renderHome();renderCareers();toast("Progress reset.");}}
+document.getElementById("subjectSearch").addEventListener("input",renderSubjects);
+document.getElementById("careerSearch").addEventListener("input",renderCareers);
+renderSubjects();renderFilters();renderCareers();renderHome();buildMatcher();populatePlanner();updateStats();
+</script>
+</body>
+</html>
