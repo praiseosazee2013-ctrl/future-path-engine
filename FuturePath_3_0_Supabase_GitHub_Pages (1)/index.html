@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>FuturePath 3.0</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<header class="topbar">
+  <a class="brand" href="#dashboard"><b>FP</b> FuturePath</a>
+  <nav>
+    <button data-page="dashboard">Dashboard</button>
+    <button data-page="revision">Revision</button>
+    <button data-page="careers">Careers</button>
+    <button data-page="progress">My Progress</button>
+  </nav>
+  <div class="account"><span id="accountLabel">Not signed in</span><button id="authButton" class="primary">Sign in</button></div>
+</header>
+<main>
+<section id="setupNotice" class="notice hidden"><b>Setup needed:</b> open <code>config.js</code> and replace the placeholder with your Supabase publishable key. Never use a secret/service-role key.</section>
+
+<section id="authPage" class="page">
+<div class="auth">
+<div class="eyebrow">GCSE learning platform</div>
+<h1 id="authTitle">Welcome to FuturePath</h1>
+<p id="authSubtitle">Create an account to save revision progress, careers and achievements in the cloud.</p>
+<div class="tabs"><button class="tab active" data-mode="login">Log in</button><button class="tab" data-mode="signup">Create account</button></div>
+<form id="authForm">
+<label id="nameWrap" class="hidden">Display name<input id="displayName" maxlength="40" placeholder="e.g. Alex"></label>
+<label>Email<input id="email" type="email" required autocomplete="email"></label>
+<label>Password<input id="password" type="password" required minlength="6" autocomplete="current-password"></label>
+<button id="authSubmit" class="primary wide">Log in</button>
+</form>
+<button id="forgot" class="link">Forgot password?</button>
+<p class="small muted">Only use an email account you are allowed to use. Never share your password.</p>
+<div id="authMessage" class="message"></div>
+</div>
+</section>
+
+<section id="dashboardPage" class="page hidden">
+<div class="hero"><div><div class="eyebrow">Your GCSE journey</div><h1>Welcome back, <span id="welcomeName">student</span>.</h1><p>Keep revising, explore careers and build your next steps.</p></div><div class="level"><small>LEVEL</small><strong id="level">1</strong><span><b id="xp">0</b> XP</span></div></div>
+<div class="stats"><article><span>Revision topics</span><b id="revisionCount">0</b><small>completed</small></article><article><span>Saved careers</span><b id="careerCount">0</b><small>in your list</small></article><article><span>Achievements</span><b id="achievementCount">0</b><small>unlocked</small></article><article><span>Next level</span><b id="nextLevel">100</b><small>XP needed</small></article></div>
+<div class="cols"><article class="panel"><h2>Recent revision</h2><div id="dashTopics"></div></article><article class="panel"><h2>Saved careers</h2><div id="dashCareers"></div></article></div>
+</section>
+
+<section id="revisionPage" class="page hidden"><div class="pagehead"><div><div class="eyebrow">Revision hub</div><h1>Revise by subject</h1><p>Tick topics off and your progress is saved to Supabase.</p></div></div><div id="revisionGrid" class="grid3"></div></section>
+
+<section id="careersPage" class="page hidden"><div class="pagehead"><div><div class="eyebrow">Career explorer</div><h1>Explore careers</h1><p>Save careers you're interested in.</p></div><input id="search" class="search" placeholder="Search careers, subjects or skills"></div><div id="careerGrid" class="grid3"></div></section>
+
+<section id="progressPage" class="page hidden"><div class="pagehead"><div><div class="eyebrow">Your progress</div><h1>My Progress</h1><p>Your cloud-saved achievements and career shortlist.</p></div></div><div class="xpbox"><div><small>XP</small><b id="progressXP">0</b></div><div><small>LEVEL</small><b id="progressLevel">1</b></div><div class="bar"><i id="xpBar"></i></div></div><div class="cols"><article class="panel"><h2>Achievements</h2><div id="achievements"></div></article><article class="panel"><h2>Saved careers</h2><div id="savedCareers"></div></article></div></section>
+</main>
+
+<dialog id="careerDialog"><button id="closeDialog" class="close">×</button><h2 id="dialogTitle"></h2><div id="dialogBody"></div></dialog>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body></html>
